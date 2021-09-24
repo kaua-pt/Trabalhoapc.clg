@@ -11,22 +11,22 @@ principal
 	// Declarações
 	inteiro i;
 	// Instruções
-		i = escolhamenu(); // chama o menu
-		se(i == 1)entao
-			enquanto(i == 1)faca // se não for um número válido, ele imprime a mensagem de erro
-				escreval("Por favor, insira um número válido");
-				para(i de 1 ate 5 passo 1)faca // dá o espaçamento por questões estéticas
+	i = escolhamenu(); // chama o menu
+	se(i == 1)entao
+		enquanto(i == 1)faca // se não for um número válido, ele imprime a mensagem de erro
+			escreval("Por favor, insira um número válido");
+			para(i de 1 ate 5 passo 1)faca // dá o espaçamento por questões estéticas
 				escreval("");
-				fimPara
-				i = escolhamenu(); // retorna ao menu
-			fimEnquanto
-		fimSe
-		se(i == 0)entao // finaliza o programa
-		fimSe
+			fimPara
+			i = escolhamenu(); // retorna ao menu
+		fimEnquanto
+	fimSe
+	se(i == 0)entao // finaliza o programa
+	fimSe
 fimPrincipal
 
 funcao inteiro escolhamenu() // retorna valores para a principal ou inicia o jogo
-	inteiro JoS;
+	inteiro jos;
 	escreval("----------- Bem-vindo-------------");
 	escreval("--------------- ao ---------------");
 	escreval("----------- BlackJack -----------");
@@ -35,206 +35,210 @@ funcao inteiro escolhamenu() // retorna valores para a principal ou inicia o jog
 	escreval("0- Sair");
 	escreval("");
 	escreval("-----------------------------------");
-		leia(JoS);
-		escolha (JoS)
-			caso 0
-				retorna 0;
-			interrompa;
-			caso 1 // irá chamar o jogo
-				jogo();
-				limpaTela();
-				retorna 1;
-			interrompa;
-			outroCaso
-				limpaTela();
-				retorna 1;
-			interrompa;
-		fimEscolha
-		
+	leia(jos);
+	escolha (jos)
+	caso 0
+		retorna 0;
+		interrompa;
+	caso 1 // irá chamar o jogo
+		jogo();
+		limpaTela();
+		retorna 1;
+		interrompa;
+	outroCaso
+		limpaTela();
+		retorna 1;
+		interrompa;
+	fimEscolha
+
 fimFuncao
 
 procedimento jogo() // procedimento pois não retorna valores, pode-se modificar tornando-o 3 funções
-	inteiro CartasJogador[3];
-	inteiro CartasBot[3];
-	inteiro Somabot, Somajogador,i;
-	inteiro cartaRand, resposta, trocadecarta,Cartalivre,indexparaoBot1,indexparaoBot2, indexparaoBot3,resposta1,auxiliar,contador,pause;
-	
-		para(contador de 0 ate 2 passo 1)faca // cartas iniciais dos jogadores
-			CartasJogador[contador] = aleatorio(10)+1;
-			CartasBot[contador] = aleatorio(10)+1;
-		fimPara
-			
-			Somajogador = CartasJogador[0] + CartasJogador[1] + CartasJogador[2]; // conta inicial do jogador
-			Somabot = CartasBot[0]+ CartasBot[1] +  CartasBot[2];	// conta inicial do bot
-			
-				se(Somajogador == 21)entao
-					escreval("");
-					escreval("Parabéns, você puxou uma ótima mão e acabou vencendo!!"); //se o jogador vencer, imprime a mensagem
-					escreval("Suas Cartas:  ", CartasJogador[0] , "  " ,CartasJogador[1] , "  " , CartasJogador[2]);
-					escreval("");
-					escreval("Digite um número para continuar");
-					leia(pause);
-			
-					escolha (pause) // semelhante ao getchar
-					caso 1
-					outroCaso
-					fimEscolha
-					limpaTela();
-					escolhamenu(); // volta ao menu principal 
-				fimSe
-				
-				se(Somabot == 21)entao
-					escreval("");
-					escreval("Que azar, ele puxou uma ótima mão e venceu!!"); // imprime a mensagem se o bot ganhar
-					escreval("Cartas do bot: ", CartasBot[0] + " " + CartasBot[1] + " " + CartasBot[2]);
-					escreval("");
-						escreval("Digite um número para continuar");
-						leia(pause);
-			
-						escolha (pause)
-						caso 1
-						outroCaso
-						fimEscolha
-					limpaTela();
-					escolhamenu();
-				fimSe
-				
-			Cartalivre = aleatorio(10)+1;
-			limpaTela();
-			
-		enquanto(Somajogador != 21 ou Somabot != 21)faca // realiza um loop infinito 
-				cartaRand = aleatorio(10)+1;
-				auxiliar = 0;
-			
-			escreval("Seu turno:"); // turno do jogador
-			escreval("Suas Cartas:  ", CartasJogador[0] , "  " ,CartasJogador[1] , "  " , CartasJogador[2]); 
-			escreval("A carta livre é:", Cartalivre);
+	inteiro cartasjogador[3];
+	inteiro cartasbot[3];
+	inteiro somabot, somajogador,i;
+	inteiro cartarand, resposta, trocadecarta,cartalivre,indexparaobot1,indexparaobot2, indexparaobot3,resposta1,auxiliar,contador,pause;
+
+	para(contador de 0 ate 2 passo 1)faca // cartas iniciais dos jogadores
+		cartasjogador[contador] = aleatorio(10)+1;
+		cartasbot[contador] = aleatorio(10)+1;
+	fimPara
+
+	somajogador = cartasjogador[0] + cartasjogador[1] + cartasjogador[2]; // conta inicial do jogador
+	somabot = cartasbot[0]+ cartasbot[1] +  cartasbot[2];	// conta inicial do bot
+
+	se(somajogador == 21)entao
+		escreval("");
+		escreval("Parabéns, você puxou uma ótima mão e acabou vencendo!!"); //se o jogador vencer, imprime a mensagem
+		escreval("Suas Cartas:  ", cartasjogador[0] , "  " ,cartasjogador[1] , "  " , cartasjogador[2]);
+		escreval("");
+		escreval("Digite um número para continuar");
+		leia(pause);
+
+		escolha (pause) // semelhante ao getchar
+		caso 1
+		outroCaso
+		fimEscolha
+		limpaTela();
+		escolhamenu()
+		;
+		// volta ao menu principal
+	fimSe
+
+	se(somabot == 21)entao
+		escreval("");
+		escreval("Que azar, ele puxou uma ótima mão e venceu!!"); // imprime a mensagem se o bot ganhar
+		escreval("Cartas do bot: ", cartasbot[0] + " " + cartasbot[1] + " " + cartasbot[2]);
+		escreval("");
+		escreval("Digite um número para continuar");
+		leia(pause);
+
+		escolha (pause)
+		caso 1
+		outroCaso
+		fimEscolha
+		limpaTela();
+		escolhamenu()
+		;
+	fimSe
+
+	cartalivre = aleatorio(10)+1;
+	limpaTela();
+
+	enquanto(somajogador != 21 ou somabot != 21)faca // realiza um loop infinito
+		cartarand = aleatorio(10)+1;
+		auxiliar = 0;
+
+		escreval("Seu turno:"); // turno do jogador
+		escreval("Suas Cartas:  ", cartasjogador[0] , "  " ,cartasjogador[1] , "  " , cartasjogador[2]);
+		escreval("A carta livre é:", cartalivre);
+		escreval("");
+		escreval("Você deseja puxar uma carta do baralho ou pegar a carta livre ? "); //perguntas para o jogador
+		escreval("1-Puxar do baralho");
+		escreval("2-Pegar a carta livre");
+		escreval("Escolha: ");
+		leia(resposta1);
+
+		se(resposta1 == 1)entao // puxar uma carta do baralho
 			escreval("");
-			escreval("Você deseja puxar uma carta do baralho ou pegar a carta livre ? "); //perguntas para o jogador
-			escreval("1-Puxar do baralho");
-			escreval("2-Pegar a carta livre");
+			escreval("Você puxou " , cartarand , " do baralho,deseja troca-la por alguma carta ? ");
+			escreval("1-Sim");
+			escreval("2-Não");
 			escreval("Escolha: ");
-				leia(resposta1);
+			leia(resposta);
 
-			se(resposta1 == 1)entao // puxar uma carta do baralho
-					escreval("");
-					escreval("Você puxou " , cartaRand , " do baralho,deseja troca-la por alguma carta ? ");
-					escreval("1-Sim");
-					escreval("2-Não");
-					escreval("Escolha: ");
-						leia(resposta);
-
-					se(resposta == 1)entao // pegar a carta
-						escreval("");
-						escreval("De 1 a 3, qual carta você deseja descartar ?");
-						escreval("Escolha: ");
-							leia(trocadecarta);
-							trocadecarta = trocadecarta -1;
-						
-						Cartalivre = CartasJogador[trocadecarta];
-						CartasJogador[trocadecarta] = cartaRand;
-					
-						escreval("Suas Cartas: ", CartasJogador[0] , "  " ,CartasJogador[1] , "   " , CartasJogador[2]); 
-						Somajogador = CartasJogador[0] + CartasJogador[1] + CartasJogador[2];
-					fimSe
-				
-					se(resposta == 2)entao // descartar a carta 
-						Cartalivre = cartaRand;
-					fimSe
-				fimSe
-
-			se(resposta1 == 2)entao // pegar a carta livre
+			se(resposta == 1)entao // pegar a carta
 				escreval("");
 				escreval("De 1 a 3, qual carta você deseja descartar ?");
 				escreval("Escolha: ");
-					leia(trocadecarta);
-					trocadecarta = trocadecarta -1;
+				leia(trocadecarta);
+				trocadecarta = trocadecarta -1;
 
-						auxiliar = Cartalivre;	// jogo para trocar as posições
-						Cartalivre = CartasJogador[trocadecarta];
-						CartasJogador[trocadecarta] = auxiliar;
-						
-					escreval("");
-					Somajogador = CartasJogador[0] + CartasJogador[1] + CartasJogador[2];
+				cartalivre = cartasjogador[trocadecarta];
+				cartasjogador[trocadecarta] = cartarand;
+
+				escreval("Suas Cartas: ", cartasjogador[0] , "  " ,cartasjogador[1] , "   " , cartasjogador[2]);
+				somajogador = cartasjogador[0] + cartasjogador[1] + cartasjogador[2];
 			fimSe
-			se(Somajogador == 21)entao
-				escreval("");
-				escreval("Parabéns, você venceu!!"); //se o jogador vencer, imprime a mensagem
-				escreval("");
-				escreval("Digite um número para continuar");
-				leia(pause);
-			
-				escolha (pause)
-					caso 1
-					outroCaso
-				fimEscolha
-				
-				interrompa; // volta ao menu
+
+			se(resposta == 2)entao // descartar a carta
+				cartalivre = cartarand;
 			fimSe
-							
+		fimSe
+
+		se(resposta1 == 2)entao // pegar a carta livre
 			escreval("");
-			escreval("Fim do seu turno"); // se a soma for diferente de 21, o jogo continua
+			escreval("De 1 a 3, qual carta você deseja descartar ?");
+			escreval("Escolha: ");
+			leia(trocadecarta);
+			trocadecarta = trocadecarta -1;
+
+			auxiliar = cartalivre;	// jogo para trocar as posições
+			cartalivre = cartasjogador[trocadecarta];
+			cartasjogador[trocadecarta] = auxiliar;
+
 			escreval("");
-			escreval("Digite qualquer numero para continuar");
+			somajogador = cartasjogador[0] + cartasjogador[1] + cartasjogador[2];
+		fimSe
+		se(somajogador == 21)entao
+			escreval("");
+			escreval("Parabéns, você venceu!!"); //se o jogador vencer, imprime a mensagem
+			escreval("");
+			escreval("Digite um número para continuar");
 			leia(pause);
-			
-				escolha (pause)
-					caso 1
-					outroCaso
-				fimEscolha
-				
-			limpaTela();
-				
-			//Turno do bot
-			indexparaoBot1 = aleatorio(2); // puxar uma carta ou pegar a carta livre
-			
-				se(indexparaoBot1 == 0)entao // puxar uma carta do baralho
-					cartaRand = aleatorio(10)+1;
-					escreval("O Bot puxa uma carta do baralho");
-					indexparaoBot2 = aleatorio(1);
-					
-						se(indexparaoBot2 == 0)entao // descartar
-							Cartalivre = cartaRand;
-							escreval("Ele a descarta");
-						fimSe
-						
-						se(indexparaoBot2 == 1)entao // pegar
-							indexparaoBot3= aleatorio(2);
-							Cartalivre = CartasBot[indexparaoBot3];
-							CartasBot[indexparaoBot3] = cartaRand;
-							escreval("Ele pegou a carta");
-						fimSe
-				fimSe
-			
-				se(indexparaoBot1 == 1)entao // pegar a carta livre
-					indexparaoBot3 = aleatorio(2);
-					escreval("O Bot puxa a carta livre que é um: ",Cartalivre);
-						auxiliar = Cartalivre;	// jogo para trocar as posições
-						Cartalivre = CartasBot[indexparaoBot3];
-						CartasBot[indexparaoBot3] = auxiliar;
-					escreval("Ele descarta um ", Cartalivre);
-				fimSe
-			
-			Somabot = CartasBot[0]+ CartasBot[1] +  CartasBot[2]; // soma para ver se o bot conseguiu ganhar
-			
-			se(Somabot == 21 )entao
-				escreval("");
-				escreval("Foi por pouco, ele venceu !!"); // imprime a mensagem se o bot ganhar
-				escreval("Cartas do bot: ", CartasBot[0] + " " + CartasBot[1] + " " + CartasBot[2]);
-				escreval("");
-				
-				leia(pause);
-			
-				escolha (pause)
-					caso 1
-					outroCaso
-				fimEscolha
-				
-				interrompa;
-				
+
+			escolha (pause)
+			caso 1
+			outroCaso
+			fimEscolha
+
+			interrompa; // volta ao menu
+		fimSe
+
+		escreval("");
+		escreval("Fim do seu turno"); // se a soma for diferente de 21, o jogo continua
+		escreval("");
+		escreval("Digite qualquer numero para continuar");
+		leia(pause);
+
+		escolha (pause)
+		caso 1
+		outroCaso
+		fimEscolha
+
+		limpaTela();
+
+		//Turno do bot
+		indexparaobot1 = aleatorio(2); // puxar uma carta ou pegar a carta livre
+
+		se(indexparaobot1 == 0)entao // puxar uma carta do baralho
+			cartarand = aleatorio(10)+1;
+			escreval("O Bot puxa uma carta do baralho");
+			indexparaobot2 = aleatorio(1);
+
+			se(indexparaobot2 == 0)entao // descartar
+				cartalivre = cartarand;
+				escreval("Ele a descarta");
 			fimSe
+
+			se(indexparaobot2 == 1)entao // pegar
+				indexparaobot3= aleatorio(2);
+				cartalivre = cartasbot[indexparaobot3];
+				cartasbot[indexparaobot3] = cartarand;
+				escreval("Ele pegou a carta");
+			fimSe
+		fimSe
+
+		se(indexparaobot1 == 1)entao // pegar a carta livre
+			indexparaobot3 = aleatorio(2);
+			escreval("O Bot puxa a carta livre que é um: ",cartalivre);
+			auxiliar = cartalivre;	// jogo para trocar as posições
+			cartalivre = cartasbot[indexparaobot3];
+			cartasbot[indexparaobot3] = auxiliar;
+			escreval("Ele descarta um ", cartalivre);
+		fimSe
+
+		somabot = cartasbot[0]+ cartasbot[1] +  cartasbot[2]; // soma para ver se o bot conseguiu ganhar
+
+		se(somabot == 21 )entao
 			escreval("");
-			escreval("O bot jogou."); // fim do turno do bot se ele não atingir 21 pontos
-		fimEnquanto
-		
+			escreval("Foi por pouco, ele venceu !!"); // imprime a mensagem se o bot ganhar
+			escreval("Cartas do bot: ", cartasbot[0] + " " + cartasbot[1] + " " + cartasbot[2]);
+			escreval("");
+
+			leia(pause);
+
+			escolha (pause)
+			caso 1
+			outroCaso
+			fimEscolha
+
+			interrompa;
+
+		fimSe
+		escreval("");
+		escreval("O bot jogou."); // fim do turno do bot se ele não atingir 21 pontos
+	fimEnquanto
+
 fimProcedimento
+
